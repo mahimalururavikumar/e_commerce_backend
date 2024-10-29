@@ -3,8 +3,7 @@ const config = require("config");
 
 mongoose
   .connect(config.get("MONGODB_URL"), {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // 30 seconds
   })
   .then(() => {
     console.log("Connected to MongoDB");
