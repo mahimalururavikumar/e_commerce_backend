@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require('../models/user-model'); 
-const productModel = require('../models/products-model'); 
-const mongoose = require('mongoose');
-const isLoginned = require('../middlewares/isLoginned'); 
+const userModel = require("../models/user-model");
+const productModel = require("../models/products-model");
+const mongoose = require("mongoose");
+const isLoginned = require("../middlewares/isLoginned");
 const {
   discountedProduct,
   filteredProducts,
@@ -23,34 +23,37 @@ router.get("/filter", filteredProducts);
 
 router.get("/orderbyprice", orderByPrice);
 
-
 router.post("/removefromcart/:id", isLoginned, async (req, res) => {
   const productId = req.params.id;
   const userId = req.user.id;
 
   try {
     const objectId = new mongoose.Types.ObjectId(productId);
-    const updatedUser = await userModel.findByIdAndUpdate(userId, {
-      $pull: { cart: objectId }
-    }, { new: true });
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      {
+        $pull: { cart: objectId },
+      },
+      { new: true }
+    );
 
     if (!updatedUser) {
-      return res.status(404).send('User not found');
+      return res.status(404).send("User not found");
     }
 
     res.redirect("/usercart");
   } catch (error) {
     console.error("Unable to remove item from cart:", error);
-    res.redirect("/usercart"); 
+    res.redirect("/usercart");
   }
 });
 
-router.get('/buy/:id', isLoginned , async ( req,res) => {
+router.get("/buy/:id", isLoginned, async (req, res) => {
   let productId = req.params.id;
-  let product = await productModel.findOne( {_id: productId })
+  let product = await productModel.findOne({ _id: productId });
   console.log(product);
-  res.render('buy',{product});
-})
+  res.render("buy", { product });
+});
 
 router.post("/outofstock/:id", outOfStock);
 

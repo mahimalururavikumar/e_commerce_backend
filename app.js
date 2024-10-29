@@ -39,6 +39,8 @@ app.use("/owner", ownerRouter);
 app.use("/products", productRouter);
 app.use("/users", userRouter);
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });

@@ -1,25 +1,24 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {isAuthorized} = require('../middlewares/ownersMiddleware');
-const { ownerLogin,admin,ownerCreate } = require('../controllers/owner');
-const { createProduct } = require('../controllers/products')
-const upload = require('../config/multer');
+const { isAuthorized } = require("../middlewares/ownersMiddleware");
+const { ownerLogin, admin, ownerCreate } = require("../controllers/owner");
+const { createProduct } = require("../controllers/products");
+const upload = require("../config/multer");
 
-
-router.get('/', function (req, res){
-    res.send("Welcome to owner router");
-})
-
-router.get('/addproduct', isAuthorized , (req , res) => {
-    res.render('createproducts');
+router.get("/", function (req, res) {
+  res.send("Welcome to owner router");
 });
 
-router.get('/admin', isAuthorized , admin)
+router.get("/addproduct", isAuthorized, (req, res) => {
+  res.render("createproducts");
+});
 
-router.post('/adminpage', ownerLogin);
+router.get("/admin", isAuthorized, admin);
 
-router.post('/ownerCreate', ownerCreate);
+router.post("/adminpage", ownerLogin);
 
-router.post('/productadded', upload.single('image'),createProduct);
+router.post("/ownerCreate", ownerCreate);
 
-module.exports= router;
+router.post("/productadded", upload.single("image"), createProduct);
+
+module.exports = router;
