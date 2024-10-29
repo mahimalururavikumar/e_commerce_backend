@@ -22,7 +22,7 @@ module.exports.userCart = async (req, res) =>{
     }
     let products = await productModel.find();
  
-    res.redirect('/usercart',{user,products});
+    res.redirect(301,'/usercart');
         
     } catch (error) {
         req.flash('error', 'An error occurred while adding the product to the cart');
