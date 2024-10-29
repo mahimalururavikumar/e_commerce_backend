@@ -1,17 +1,17 @@
 <%- include('./partials/header') %>
 
-<div class="w-full h-screen flex items-start px-20 py-20">
-    <div class="w-[25%] flex h-screen flex-col items-start">
+<div class="w-full h-screen flex flex-col lg:flex-row px-4 lg:px-20 py-5">
+    <div class="w-full lg:w-[25%] flex h-full flex-col items-start mb-5 lg:mb-0">
         <div class="flex flex-col">
-            <a class="block w-fit mb-2 font-semibold text-lg" href="/owner/admin">All Products</a>
+            <a class="block w-fit mb-2 font-semibold text-lg" href="/owner/adminpage">All Products</a>
             <a class="block w-fit mb-2 font-semibold text-lg" href="/owner/addproduct">Create New Product</a>
         </div>
     </div>
 
-    <div class="w-[75%] h-full flex flex-col gap-5">
+    <div class="w-full lg:w-[75%] h-full flex flex-col gap-5">
         <div class="flex flex-wrap gap-5">
             <% products.forEach((product) => { %>
-            <div class="w-1/3 p-2">
+            <div class="w-full sm:w-1/2 lg:w-1/3 p-2">
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
                     <div class="w-full h-52 bg-<%= product.color %>">
                         <img class="h-full w-full object-cover rounded-t-lg" src="/images/<%= product.image %>"
@@ -24,14 +24,14 @@
                         </div>
                         <div class="flex flex-col gap-1">
                             <% if (product.stock) { %>
-                                <!-- Out of Stock Button -->
+                               
                                 <form action="/products/outofstock/<%= product._id %>" method="POST" class="inline">
                                     <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition">
                                         <i class="ri-alert-line"></i> Out of Stock
                                     </button>
                                 </form>
                             <% } else { %>
-                                <!-- Add to Stock Button -->
+                                
                                 <form action="/products/addtostock/<%= product._id %>" method="POST" class="inline">
                                     <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition">
                                         <i class="ri-add-line"></i> Add to Stock
@@ -39,7 +39,7 @@
                                 </form>
                             <% } %>
 
-                            <!-- Delete Button -->
+                            
                             <form action="/products/delete/<%= product._id %>" method="POST" class="inline">
                                 <button type="submit" class="bg-red-700 text-white px-3 py-1 rounded-md hover:bg-red-800 transition">
                                     <i class="ri-delete-bin-6-line"></i> Delete
