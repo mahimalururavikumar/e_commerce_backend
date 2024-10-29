@@ -1,7 +1,6 @@
-"# e_commerce_backend using ejs dynamic template" 
+"# e_commerce_backend" 
 Technologies Used
 -Node js
 -ejs
 -express
 -MongoDB
--Tailwind for styling
