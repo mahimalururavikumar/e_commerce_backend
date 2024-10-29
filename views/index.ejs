@@ -1,0 +1,46 @@
+<%- include('./partials/header') %>
+<div class="mt-4">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <% if (error) { %>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '<%= error %>',
+                timer: 3000, // Automatically close after 3 seconds
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end'
+            });
+        </script>
+    <% } %>
+    
+    <% if (success) { %>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '<%= success %>',
+                timer: 3000, // Automatically close after 3 seconds
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end'
+            });
+        </script>
+    <% } %>
+</div>
+
+
+    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+        <form method="post" action="/users/register" class="flex flex-col bg-white w-96 text-black border border-zinc-300 rounded-md p-6 space-y-4 shadow-lg">
+            <h2 class="text-lg font-semibold text-center">Register</h2>
+            <input type="text" placeholder="Username" name="fullname" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="email" placeholder="Email" name="email" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="password" placeholder="Password" name="password" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="submit" name="submit" value="Register" class="bg-blue-500 text-white rounded px-4 py-2 cursor-pointer hover:bg-blue-600" />
+            <a href="/login" class="text-blue-500 hover:text-blue-600">Already have an account? Login</a>
+        </form>
+    </div>
+    
+    <%- include('./partials/footer') %>
