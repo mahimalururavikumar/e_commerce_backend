@@ -4,3 +4,4 @@ Technologies Used
 -ejs
 -express
 -MongoDB
+-TailwindCss
