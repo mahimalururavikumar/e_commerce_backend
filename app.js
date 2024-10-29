@@ -27,7 +27,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: process.env.SECRET_KEY,
+    secret: process.env.SECRET_KEY || 'ravi',
     resave: false,
     saveUninitialized: false,
   })
