@@ -2,34 +2,34 @@
 
 <div class="mt-4">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <% if(messages.error.length > 0) { %>
+
+    <% if (messages.error.length > 0) { %>
         <script>
-            swal.fire({
+            Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: '<%= messages.error[0] %>',
                 timer: 3000,
                 showConfirmButton: false,
                 toast: true,
-                positon: 'top-end'
-            })
+                position: 'top-end'
+            });
         </script>
-    <% } %>
-    <% if(messages.success.length > 0) {%>
+        <% } %>
 
-        <script>
-            swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '<%= messages.success[0] %>',
-                timer: 3000,
-                showConfirmButton: false,
-                toast: true,
-                positon: 'top-end'
-            })
-        </script>
-    <% } %>
-
+            <% if (messages.success.length > 0) { %>
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: '<%= messages.success[0] %>',
+                        timer: 3000,
+                        showConfirmButton: false,
+                        toast: true,
+                        position: 'top-end'
+                    });
+                </script>
+                <% } %>
 </div>
             <div class="min-h-screen flex flex-col">
                 <div class="container px-10 py-20 flex flex-grow">
