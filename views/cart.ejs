@@ -32,6 +32,7 @@
 </div>
 
 <div class="w-full min-h-screen flex flex-col items-start px-4 md:px-20 py-20 gap-10">
+    <% if(products.length > 0) { %>
     <% products.forEach((product) => { %>
         <div class="w-full rounded-md overflow-hidden flex flex-col md:flex-row gap-4 bg-gray-100 p-4">
             <div class="flex-col m-2 rounded-lg bg-gray-200 flex-grow">
@@ -114,6 +115,17 @@
         </div>
         <div class="w-full h-[2px] bg-black my-10"></div>
     <% }) %>
+    <% } else { %>
+        <div class="text-center mt-20 p-10 bg-gray-100 rounded-lg shadow-lg max-w-md mx-auto">
+            <h2 class="text-xl font-bold text-gray-800 mb-3">Oops! Your cart is as empty as my social life.</h2>
+            <p class="text-gray-500 mb-5">Go ahead, add something! Your future self will thank you.</p>
+            <a href="/shop" 
+               class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Go back to shop
+            </a>
+        </div>
+               
+    <% } %>
 </div>
 
 <%- include('./partials/footer') %>

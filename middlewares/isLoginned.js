@@ -10,13 +10,13 @@ module.exports = async function(req, res, next) {
     } else {
         try {
             let decoded = jwt.verify(cookie, process.env.JWT_KEY);
-            let user = await userModel.findOne({ _id: decoded.id }).select("-password"); // Use async/await
+            let user = await userModel.findOne({ _id: decoded.id }).select("-password");
             if (!user) {
                 req.flash("error", "User not found.");
                 return res.redirect('/login');
             }
             req.user = user;
-            next(); // Proceed to next middleware or route handler
+            next();
         } catch (error) {
             req.flash("error", "Something went wrong.");
             return res.redirect('/login');
