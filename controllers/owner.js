@@ -39,8 +39,10 @@ module.exports.admin =  async (req,res) => {
 
     try {
         
-    let error = req.flash('error');
-    let success = req.flash('success');
+        const messages = {
+            error: req.flash("error"),
+            success: req.flash("success"),
+        };
 
    
     let products = await productModel.find();
@@ -50,7 +52,7 @@ module.exports.admin =  async (req,res) => {
         return res.redirect('/ownerlogin');
     }
     
-    res.render('admin',{products,error,success})
+    res.render('admin',{products,messages})
     } catch (error) {
         console.error('Error fetching products:', error.message);
         req.flash('error', 'Unable to load products');

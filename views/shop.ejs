@@ -2,12 +2,12 @@
     <div class="mt-4">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <% if (error) { %>
+        <% if (messages.error.length > 0) { %>
             <script>
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: '<%= error %>',
+                    text: '<%= messages.error[0] %>',
                     timer: 3000,
                     showConfirmButton: false,
                     toast: true,
@@ -16,12 +16,12 @@
             </script>
             <% } %>
 
-                <% if (success) { %>
+                <% if (messages.success.length > 0) { %>
                     <script>
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
-                            text: '<%= success %>',
+                            text: '<%= messages.success[0] %>',
                             timer: 3000,
                             showConfirmButton: false,
                             toast: true,
@@ -31,9 +31,9 @@
                     <% } %>
     </div>
 
-    <!-- Page Layout -->
+    
     <div class="w-full min-h-screen flex flex-col lg:flex-row items-start px-4 md:px-8 lg:px-20 py-10">
-        <!-- Sidebar with Sorting and Filtering Options -->
+       
         <div class="w-full lg:w-1/4 flex flex-col gap-5 h-auto lg:h-full mb-5 lg:mb-0 lg:sticky top-4">
             <div class="flex items-center gap-2">
                 <h3>Sort by</h3>
@@ -80,7 +80,6 @@
 
         </div>
 
-        <!-- Main Product Section -->
         <div class="w-full lg:w-3/4 flex flex-col gap-5 p-4">
 
             <div class="flex gap-3 fixed top-4 right-4 m-5 z-50">

@@ -4,7 +4,6 @@ const ownerModel = require("../models/owner-model");
 module.exports.createProduct = async (req, res) => {
   let { name, price, discount, bgcolor, panelcolor, textcolor } = req.body;
   let image = req.file ? req.file.filename : null;
-
   try {
     let createdProduct = await productModel.create({
       name,
@@ -37,6 +36,10 @@ module.exports.createProduct = async (req, res) => {
 
 module.exports.discountedProduct = async (req, res) => {
   try {
+    const messages = {
+      error: req.flash("error"),
+      success: req.flash("success"),
+  };
     let products = await productModel
       .find({ discount: { $gt: 0 } })
       .sort({ discount: -1 })
@@ -48,7 +51,7 @@ module.exports.discountedProduct = async (req, res) => {
       res.redirect("/shop");
     }
 
-    res.render("Topdicountedproducts", { products });
+    res.render("Topdicountedproducts", { products ,messages});
   } catch (error) {
     req.flash("error", "Failed to load discounted products");
     console.log("Error Fecthing the products");
@@ -58,6 +61,10 @@ module.exports.discountedProduct = async (req, res) => {
 
 module.exports.filteredProducts = async (req, res) => {
   try {
+    const messages = {
+      error: req.flash("error"),
+      success: req.flash("success"),
+  };
     const { availability, discount } = req.query;
 
     let filter = {};
@@ -77,7 +84,7 @@ module.exports.filteredProducts = async (req, res) => {
 
     console.log(filter);
     const products = await productModel.find(filter);
-    res.render("filtered-items", { products });
+    res.render("filtered-items", { products, messages });
   } catch (error) {
     console.error("Error fetching filtered products:", error);
     req.flash("error", "Failed to load filtered products");
@@ -87,6 +94,10 @@ module.exports.filteredProducts = async (req, res) => {
 
 module.exports.orderByPrice = async (req, res) => {
   try {
+    const messages = {
+      error: req.flash("error"),
+      success: req.flash("success"),
+  };
     let sortBy = req.query.sortby;
     let products;
 
@@ -100,7 +111,7 @@ module.exports.orderByPrice = async (req, res) => {
       products = await productModel.find();
     }
 
-    res.render("filtered-items", { products });
+    res.render("filtered-items", { products, messages });
   } catch (error) {
     console.log("Error fetching the products", error);
     res.redirect("/shop");

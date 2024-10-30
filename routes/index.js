@@ -9,15 +9,21 @@ const {
 } = require("../controllers/mainController");
 
 router.get("/", (req, res) => {
-  let error = req.flash("error");
-  let success = req.flash("success");
-  res.render("index", { error, success });
+  const messages = {
+      error: req.flash("error"),
+      success: req.flash("success"),
+  };
+  console.log("Flash Messages:", messages); 
+  res.render("index", { messages });
 });
 
+
 router.get("/login", (req, res) => {
-  let error = req.flash("error");
-  let success = req.flash("success");
-  res.render("login", { error, success });
+  const messages = {
+    error: req.flash("error"),
+    success: req.flash("success"),
+};
+  res.render("login", { messages });
 });
 
 router.get("/shop", shop);

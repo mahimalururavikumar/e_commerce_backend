@@ -1,4 +1,35 @@
 <%- include('./partials/header') %>
+<div class="mt-4">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(messages.error.length > 0) { %>
+        <script>
+            swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '<%= messages.error[0] %>',
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                positon: 'top-end'
+            })
+        </script>
+    <% } %>
+    <% if(messages.success.length > 0) {%>
+
+        <script>
+            swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '<%= messages.success[0] %>',
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                positon: 'top-end'
+            })
+        </script>
+    <% } %>
+
+</div>
 
 <div class="w-full min-h-screen flex flex-col items-start px-4 md:px-20 py-20 gap-10">
     <% products.forEach((product) => { %>
@@ -13,12 +44,12 @@
                         <%= product.name %>
                     </h3>
                     <div class="flex items-center gap-2">
-                        <!-- Increment Button -->
+                        
                         <button onclick="updateQuantity('<%= product._id %>', 1)" class="w-7 h-7 bg-white flex rounded-full items-center justify-center">
                             <i class="ri-add-line"></i>
                         </button>
                         <div id="quantity-<%= product._id %>" class="px-2 py-1 rounded-md bg-white text-black">1</div>
-                        <!-- Decrement Button -->
+                        
                         <button onclick="updateQuantity('<%= product._id %>', -1)" class="w-7 h-7 bg-white flex rounded-full items-center justify-center">
                             <i class="ri-subtract-line"></i>
                         </button>

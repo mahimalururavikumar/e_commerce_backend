@@ -49,10 +49,14 @@ router.post("/removefromcart/:id", isLoginned, async (req, res) => {
 });
 
 router.get("/buy/:id", isLoginned, async (req, res) => {
+  const messages = {
+    error: req.flash("error"),
+    success: req.flash("success"),
+};
   let productId = req.params.id;
   let product = await productModel.findOne({ _id: productId });
   console.log(product);
-  res.render("buy", { product });
+  res.render("buy", { product ,messages});
 });
 
 router.post("/outofstock/:id", outOfStock);

@@ -10,7 +10,11 @@ router.get("/", function (req, res) {
 });
 
 router.get("/addproduct", isAuthorized, (req, res) => {
-  res.render("createproducts");
+  const messages = {
+    error: req.flash("error"),
+    success: req.flash("success"),
+};
+  res.render("createproducts",{messages});
 });
 
 router.get("/admin", isAuthorized, admin);

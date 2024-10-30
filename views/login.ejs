@@ -3,13 +3,27 @@
     <div class="mt-4">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-        <% if (error) { %>
+        <% if (messages.error.length > 0) { %>
             <script>
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: '<%= error %>',
-                    timer: 3000, // Automatically close after 3 seconds
+                    text: '<%= messages.error[0] %>',
+                    timer: 3000,
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end'
+                });
+            </script>
+        <% } %>
+         
+        <% if (messages.success.length > 0) { %>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '<%= messages.success[0] %>',
+                    timer: 3000,
                     showConfirmButton: false,
                     toast: true,
                     position: 'top-end'
@@ -17,19 +31,6 @@
             </script>
         <% } %>
         
-        <% if (success) { %>
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: '<%= success %>',
-                    timer: 3000, // Automatically close after 3 seconds
-                    showConfirmButton: false,
-                    toast: true,
-                    position: 'top-end'
-                });
-            </script>
-        <% } %>
     </div>
     
     
