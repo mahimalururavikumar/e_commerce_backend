@@ -9,7 +9,7 @@ router.get("/", function (req, res) {
   res.send("Welcome to owner router");
 });
 
-router.get("/addproduct", isAuthorized, (req, res) => {
+router.get("/addproduct", (req, res) => {
   const messages = {
     error: req.flash("error"),
     success: req.flash("success"),
@@ -17,12 +17,12 @@ router.get("/addproduct", isAuthorized, (req, res) => {
   res.render("createproducts",{messages});
 });
 
-router.get("/admin", isAuthorized, admin);
+router.get("/admin", admin);
 
 router.post("/adminpage", ownerLogin);
 
 router.post("/ownerCreate", ownerCreate);
 
-router.post("/productadded", upload.single("image"), createProduct);
+router.post("/productadded",isAuthorized , upload.single("image"), createProduct);
 
 module.exports = router;

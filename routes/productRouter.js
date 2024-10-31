@@ -4,6 +4,7 @@ const userModel = require("../models/user-model");
 const productModel = require("../models/products-model");
 const mongoose = require("mongoose");
 const isLoginned = require("../middlewares/isLoginned");
+const {isAuthorized} = require("../middlewares/ownersMiddleware")
 const {
   discountedProduct,
   filteredProducts,
@@ -59,9 +60,9 @@ router.get("/buy/:id", isLoginned, async (req, res) => {
   res.render("buy", { product ,messages});
 });
 
-router.post("/outofstock/:id", outOfStock);
+router.post("/outofstock/:id", isAuthorized,outOfStock);
 
-router.post("/addtostock/:id", addToStock);
+router.post("/addtostock/:id",isAuthorized, addToStock);
 
-router.post("/delete/:id", deleteProduct);
+router.post("/delete/:id",isAuthorized, deleteProduct);
 module.exports = router;

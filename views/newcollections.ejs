@@ -30,7 +30,7 @@
                 </script>
                 <% } %>
 </div>
-    <div class="w-full min-h-screen flex flex-col lg:flex-row items-start px-4 md:px-8 lg:px-20 py-10">
+    <div class="w-full min-h-screen flex flex-col lg:flex-row items-start px-4 md:px-8 lg:px-20 py-10 ml-7">
        
         <div class="w-full lg:w-1/4 flex flex-col gap-5 h-auto lg:h-full mb-5 lg:mb-0 lg:sticky top-4">
             <div class="flex items-center gap-2">
@@ -139,7 +139,7 @@
                                         <p class="text-red-500">currently out of stock.</p>
                                     </div>
                                 <% } else { %>
-                                    <form method="post" action="users/addtocart/<%= product._id %>" class="flex items-center">
+                                    <form method="post" action="/users/addtocart/<%= product._id %>" class="flex items-center">
                                         <button type="submit"
                                             class="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow hover:bg-gray-200 transition">
                                             <i class="ri-add-line text-lg"></i>
